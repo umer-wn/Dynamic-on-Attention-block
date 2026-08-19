@@ -1,0 +1,27 @@
+experiment_name: pythia_lyapunov_alpha00
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+output_dir: /home/luohaoming/model_feature_experiments/paper_aligned_lyapunov_remeasurement/alpha00
+cache_dir: /public/luohaoming/model_feature/hf_cache
+offline: true
+skip_existing: true
+models: [{name: EleutherAI/pythia-70m, revision: main, tokenizer: EleutherAI/pythia-70m}]
+dataset: {name: wikitext, config: wikitext-2-raw-v1, split: validation, text_column: text, num_samples: 4, sequence_lengths: [64]}
+dynamics:
+  target: final_hidden
+  operator_update: residual
+  residual_alpha: 0.0
+  token_mode: nonpad_flattened
+  burn_in_steps: 8
+  eval_steps: 16
+  perturbation_epsilon: 1.0e-3
+  convergence_tol: 1.0e-6
+  frobenius_eval_states: 4
+  frobenius_probes: 4
+  lyapunov_probes: 4
+  probe_distribution: rademacher
+  save_trajectory_summary: true
+  trajectory_projection: fixed_random
+  lag_distance_windows: [1, 2, 4, 8]

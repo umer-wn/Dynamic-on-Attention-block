@@ -1,0 +1,11 @@
+experiment_name: pythia_checkpoint_criticality
+device: cpu
+dtype: float32
+attn_implementation: eager
+output_dir: /home/luohaoming/model_feature_experiments/pythia_checkpoint_criticality
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+offline: false
+models:
+  - name: EleutherAI/pythia-70m
+    tokenizer: EleutherAI/pythia-70m
+    revisions: [step0, step1000, step16000, step143000]

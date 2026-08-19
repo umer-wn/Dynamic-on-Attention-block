@@ -1,0 +1,31 @@
+experiment_name: pythia_training_dynamics
+seed: 1234
+device: auto
+dtype: float32
+attn_implementation: eager
+output_dir: results
+cache_dir: /public/luohaoming/model_feature/hf_cache
+offline: false
+skip_existing: true
+
+models:
+  - name: EleutherAI/pythia-70m
+    tokenizer: EleutherAI/pythia-70m
+    revisions: [step0, step1000, step4000, step16000, step64000, step143000]
+  - name: EleutherAI/pythia-160m
+    tokenizer: EleutherAI/pythia-160m
+    revisions: [step0, step1000, step4000, step16000, step64000, step143000]
+
+dataset:
+  name: wikitext
+  config: wikitext-2-raw-v1
+  split: validation
+  text_column: text
+  num_samples: 128
+  sequence_lengths: [128, 512]
+
+layers: all
+batch_size: 1
+power_iterations: 10
+top_k_singular_values: 8
+jacobian_token_mode: nonpad_flattened

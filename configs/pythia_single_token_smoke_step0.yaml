@@ -1,0 +1,32 @@
+experiment_name: pythia_single_token_smoke
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+offline: true
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+output_dir: /home/luohaoming/model_feature_experiments/single_token_frequency_dynamics/smoke/step0
+frequency_manifest: /home/luohaoming/model_feature_experiments/single_token_frequency_dynamics/frequency_audit/selected_tokens.jsonl
+models:
+  - name: EleutherAI/pythia-70m
+    revision: step0
+    tokenizer: EleutherAI/pythia-70m
+sampling:
+  one_per_bin: true
+  contexts_per_token: 1
+dynamics:
+  groups: [isolated_token, frozen_context, dynamic_context]
+  steps: 48
+  eval_start: 32
+  tail_size: 8
+metrics:
+  perturbation_epsilon: 1.0e-3
+  projection_count: 4
+  projection_seed: 1234
+  hutchinson_states: 2
+  hutchinson_probes: 4
+  lyapunov_steps: 16
+  lyapunov_probes: 2
+  exact_steps: [0, 32, 47]
+  exact_contexts: [0]
+  jacobian_chunk_size: 16

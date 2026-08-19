@@ -1,0 +1,14 @@
+experiment_name: pythia_checkpoint_criticality
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+output_dir: /home/luohaoming/model_feature_experiments/pythia_checkpoint_criticality
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+offline: true
+skip_existing: true
+models:
+  - name: EleutherAI/pythia-70m
+    tokenizer: EleutherAI/pythia-70m
+    revisions: [step0, step1000, step16000, step143000]
+dataset: {name: wikitext, config: wikitext-2-raw-v1, split: validation, text_column: text, num_samples: 128, sequence_lengths: [64]}

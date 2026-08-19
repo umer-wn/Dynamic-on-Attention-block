@@ -1,0 +1,38 @@
+experiment_name: pythia_rolling_next_token_main_tangent
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+output_dir: /home/luohaoming/model_feature_experiments/rolling_next_token_criticality/main_tangent/step16000
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+offline: true
+models:
+  - name: EleutherAI/pythia-70m
+    revision: step16000
+    tokenizer: EleutherAI/pythia-70m
+dataset:
+  name: wikitext
+  config: wikitext-2-raw-v1
+  split: validation
+  text_column: text
+  document_indices: [264, 219, 598, 509, 34, 287, 282, 439]
+  anchor_offsets: [0]
+  window_length: 64
+rolling_operator:
+  mode: soft_expected_next_token
+  temperature: 1.0
+  position_mode: reset
+  burn_in_steps: 256
+  eval_steps: 128
+  hard_steps: 0
+metrics:
+  perturbation_epsilon: 1.0e-3
+  compute_frobenius: true
+  frobenius_eval_states: 4
+  frobenius_probes: 8
+  compute_lyapunov: true
+  lyapunov_probes: 2
+  compute_hard: false
+  projection_count: 3
+  projection_seed: 1234
+

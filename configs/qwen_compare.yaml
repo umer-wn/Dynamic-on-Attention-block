@@ -1,0 +1,31 @@
+experiment_name: qwen_compare
+seed: 1234
+device: auto
+dtype: float32
+attn_implementation: eager
+output_dir: results
+cache_dir: /public/luohaoming/model_feature/hf_cache
+offline: false
+skip_existing: true
+
+models:
+  - name: Qwen/Qwen2.5-0.5B
+    revision: main
+    tokenizer: Qwen/Qwen2.5-0.5B
+  - name: Qwen/Qwen3-0.6B
+    revision: main
+    tokenizer: Qwen/Qwen3-0.6B
+
+dataset:
+  name: wikitext
+  config: wikitext-2-raw-v1
+  split: validation
+  text_column: text
+  num_samples: 64
+  sequence_lengths: [128, 512]
+
+layers: all
+batch_size: 1
+power_iterations: 10
+top_k_singular_values: 8
+jacobian_token_mode: nonpad_flattened
