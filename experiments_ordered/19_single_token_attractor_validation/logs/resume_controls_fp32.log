@@ -1,0 +1,85 @@
+{"stage": "controls", "status": "start"}
+`torch_dtype` is deprecated! Use `dtype` instead!
+{"stage": "controls_screen", "condition": "step0__full", "status": "skip"}
+{"stage": "controls_validate", "condition": "step0__full", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__mlp_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__vo_residual", "status": "skip"}
+{"stage": "controls_validate", "condition": "step0__vo_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__no_internal_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__no_final_ln", "status": "skip"}
+{"stage": "controls_validate", "condition": "step0__no_final_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__no_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_0", "status": "skip"}
+{"stage": "controls_validate", "condition": "step0__layer_shuffle_0", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_1", "status": "skip"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_2", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__full", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__mlp_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__vo_residual", "status": "skip"}
+{"stage": "controls_validate", "condition": "step13000__vo_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__no_internal_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__no_final_ln", "status": "skip"}
+{"stage": "controls_validate", "condition": "step13000__no_final_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__no_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_0", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_1", "status": "skip"}
+{"stage": "controls_validate", "condition": "step13000__layer_shuffle_1", "status": "skip"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_2", "status": "skip"}
+{"stage": "controls_validate", "condition": "step13000__layer_shuffle_2", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__full", "status": "skip"}
+{"stage": "controls_validate", "condition": "step29000__full", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__mlp_residual", "status": "skip"}
+{"stage": "controls_validate", "condition": "step29000__mlp_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__vo_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__no_internal_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__no_final_ln", "status": "skip"}
+{"stage": "controls_validate", "condition": "step29000__no_final_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__no_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_0", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_1", "status": "skip"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_2", "status": "skip"}
+{"stage": "controls_validate", "condition": "step29000__layer_shuffle_2", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__full", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__mlp_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__vo_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__no_internal_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__no_final_ln", "status": "skip"}
+{"stage": "controls_validate", "condition": "step61000__no_final_ln", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__no_residual", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_0", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_1", "status": "skip"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_2", "status": "skip"}
+Traceback (most recent call last):
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 1249, in <module>
+    main()
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 1238, in main
+    controls_stage(args, config, tokens)
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 815, in controls_stage
+    current = execute_condition(
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 519, in execute_condition
+    summaries, recurrence = analyze_trace(
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 401, in analyze_trace
+    lyapunov, _ = finite_time_lyapunov(
+  File "/data1/luohaoming/model_feature/src/attractor_validation.py", line 143, in finite_time_lyapunov
+    _, next_tangent = torch.func.jvp(mapping, (state,), (tangent,))
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 1043, in jvp
+    return _jvp_with_argnums(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 1102, in _jvp_with_argnums
+    result_duals = func(*duals)
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 225, in jvp_map
+    return self._custom_forward(states)
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 180, in _custom_forward
+    attention_output = layer.attention(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/models/gpt_neox/modeling_gpt_neox.py", line 157, in forward
+    qkv = self.query_key_value(hidden_states).view(hidden_shape).transpose(1, 2)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: expected mat1 and mat2 to have the same dtype, but got: float != c10::Half

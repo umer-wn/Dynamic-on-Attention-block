@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "original_orbits": 288,
+  "dense_orbits": 21,
+  "phase_residual_rows": 35554,
+  "stage4_system_rows": 96,
+  "maximum_p95_recompute_absolute_difference": 2.6824082510757276e-09,
+  "variance_definition": "population variance: mean((ri - mean(ri))**2)"
+}

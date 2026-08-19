@@ -1,0 +1,5 @@
+{"checkpoint": "step41000", "period": 57, "residual": 0.001796812517568469, "stability": "shooting_failed", "gain_geomean": 0.2786815992028544, "seconds": 3.3}
+{"checkpoint": "step42000", "period": 97, "residual": 0.0022696831729263067, "stability": "shooting_failed", "gain_geomean": 0.2005000099399902, "seconds": 1.4}
+{"checkpoint": "step43000", "period": 43, "residual": 0.0011078871320933104, "stability": "shooting_failed", "gain_geomean": 2.8148812528801517, "seconds": 1.5}
+{"checkpoint": "step44000", "period": 173, "residual": 9.207765288010705e-07, "stability": "boundary", "gain_geomean": 0.2111612638790793, "seconds": 331.9}
+{"checkpoint": "step45000", "period": 127, "residual": 2.9794880902045406e-05, "stability": "boundary", "gain_geomean": 0.5319093297937376, "seconds": 243.6}

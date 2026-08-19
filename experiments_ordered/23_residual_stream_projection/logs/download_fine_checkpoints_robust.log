@@ -1,0 +1,71 @@
+2026-08-13T17:03:56+08:00 DOWNLOAD step27000 attempt=1 endpoint=https://hf-mirror.com
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Fetching 5 files:  20%|██        | 1/5 [00:01<00:06,  1.62s/it]Fetching 5 files:  20%|██        | 1/5 [08:27<33:50, 507.74s/it]
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 903, in _error_catcher
+    yield
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1049, in _raw_read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+urllib3.exceptions.IncompleteRead: IncompleteRead(48489062 bytes read, 233226114 more expected)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/models.py", line 820, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1257, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1149, in read
+    data = self._raw_read(amt)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1057, in _raw_read
+    self._fp.close()
+  File "/usr/lib64/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 927, in _error_catcher
+    raise ProtocolError(arg, e) from e
+urllib3.exceptions.ProtocolError: ('Connection broken: IncompleteRead(48489062 bytes read, 233226114 more expected)', IncompleteRead(48489062 bytes read, 233226114 more expected))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/std.py", line 1187, in __iter__
+    for obj in iterable:
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 609, in result_iterator
+    yield fs.pop().result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 446, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 500, in http_get
+    for chunk in r.iter_content(chunk_size=constants.DOWNLOAD_CHUNK_SIZE):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/models.py", line 822, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ('Connection broken: IncompleteRead(48489062 bytes read, 233226114 more expected)', IncompleteRead(48489062 bytes read, 233226114 more expected))
+2026-08-13T17:12:27+08:00 RETRY step27000 after failure
+2026-08-13T17:12:47+08:00 DOWNLOAD step27000 attempt=2 endpoint=https://hf-mirror.com
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Fetching 5 files:  40%|████      | 2/5 [29:52<44:48, 896.06s/it]Fetching 5 files:  80%|████████  | 4/5 [29:53<06:09, 369.49s/it]Fetching 5 files: 100%|██████████| 5/5 [29:54<00:00, 260.46s/it]Fetching 5 files: 100%|██████████| 5/5 [29:54<00:00, 358.97s/it]
+/public/luohaoming/model_feature/hf_cache/models--EleutherAI--pythia-70m/snapshots/59e8890d3c69e2119cc2bece5dc4ae68d2dc8bf8

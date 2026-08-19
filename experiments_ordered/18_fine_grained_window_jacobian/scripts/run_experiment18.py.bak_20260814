@@ -1,0 +1,297 @@
+#!/usr/bin/env python
+from __future__ import annotations
+
+import argparse
+import csv
+import importlib.util
+import json
+import sys
+import time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
+from scripts._bootstrap import require_packages
+
+require_packages(["numpy", "torch", "transformers"])
+
+import numpy as np
+import torch
+
+
+ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[3]
+EXP15_SCRIPT = REPO / (
+    "experiments_ordered/15_window_jacobian_token_projection/"
+    "scripts/run_experiment15.py"
+)
+SPEC = importlib.util.spec_from_file_location("experiment15_base", EXP15_SCRIPT)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"cannot import {EXP15_SCRIPT}")
+base = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(base)
+
+CHECKPOINTS = [
+    "step0",
+    "step2000",
+    "step3000",
+    "step4000",
+    "step5000",
+    "step7000",
+    "step8000",
+    "step9000",
+    "step10000",
+    "step13000",
+    "step21000",
+    "step25000",
+    "step29000",
+    "step33000",
+    "step37000",
+    "step41000",
+    "step53000",
+    "step57000",
+    "step61000",
+]
+TOKEN_MANIFEST = ROOT / "manifests/frequency_stratified_tokens_8.csv"
+DEFAULT_CACHE = Path("/home/luohaoming/model_feature_cache/hf_cache")
+DEFAULT_DATA_ROOT = Path(
+    "/data1/luohaoming/model_feature_experiments/"
+    "experiment18_fine_grained_window_jacobian"
+)
+METRICS = (
+    "spectral_radius",
+    "operator_norm_2",
+    "jacobian_frobenius_norm",
+)
+
+
+def read_tokens(path: Path) -> list[dict]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    tokens = [
+        {
+            "selection_index": int(row["selection_index"]),
+            "token_id": int(row["token_id"]),
+            "token": row["token"],
+            "wikitext_train_count": int(row["wikitext_train_count"]),
+            "frequency_bin": int(row["frequency_bin"]),
+        }
+        for row in rows
+    ]
+    if len(tokens) != 8:
+        raise RuntimeError(f"expected 8 tokens in {path}, found {len(tokens)}")
+    bins = [token["frequency_bin"] for token in tokens]
+    if sorted(bins) != list(range(8)):
+        raise RuntimeError(f"expected one token from every frequency bin, found {bins}")
+    return tokens
+
+
+def sample_steps(steps: int, stride: int) -> list[int]:
+    if steps <= 0 or stride <= 0 or steps % stride:
+        raise ValueError(
+            f"steps={steps} must be positive and divisible by sample_stride={stride}"
+        )
+    return list(range(0, steps + 1, stride))
+
+
+def aggregate_rows(
+    rows: list[dict],
+    checkpoints: list[str],
+    samples: list[int],
+) -> list[dict]:
+    output: list[dict] = []
+    for checkpoint in checkpoints:
+        for dynamic_step in samples:
+            group = [
+                row
+                for row in rows
+                if row["checkpoint"] == checkpoint
+                and int(row["dynamic_step"]) == dynamic_step
+            ]
+            if not group:
+                continue
+            result = {
+                "checkpoint": checkpoint,
+                "training_step": int(checkpoint.removeprefix("step")),
+                "dynamic_step": dynamic_step,
+                "token_count": len(group),
+            }
+            for metric in METRICS:
+                values = np.asarray(
+                    [float(row[metric]) for row in group], dtype=np.float64
+                )
+                result[f"{metric}_median"] = float(np.median(values))
+                result[f"{metric}_min"] = float(values.min())
+                result[f"{metric}_max"] = float(values.max())
+            output.append(result)
+    return output
+
+
+def refresh_outputs(
+    args,
+    checkpoints: list[str],
+    samples: list[int],
+) -> None:
+    parts = args.report_root / "processed/raw_parts"
+    rows: list[dict] = []
+    for checkpoint in checkpoints:
+        part = parts / f"{checkpoint}.csv"
+        if part.exists():
+            rows.extend(base.read_csv(part))
+    if not rows:
+        return
+    base.write_csv(args.report_root / "processed/jacobian_fine_grained_raw.csv", rows)
+    aggregate = aggregate_rows(rows, checkpoints, samples)
+    if aggregate:
+        base.write_csv(
+            args.report_root / "processed/jacobian_fine_grained_8tokens.csv",
+            aggregate,
+        )
+
+
+def metrics_stage(
+    args,
+    checkpoints: list[str],
+    tokens: list[dict],
+) -> None:
+    samples = sample_steps(args.steps, args.sample_stride)
+    parts = args.report_root / "processed/raw_parts"
+    parts.mkdir(parents=True, exist_ok=True)
+    expected = len(samples) * len(tokens)
+    for checkpoint_index, checkpoint in enumerate(checkpoints):
+        part = parts / f"{checkpoint}.csv"
+        rows = [] if args.overwrite or not part.exists() else base.read_csv(part)
+        row_index = {
+            (int(row["dynamic_step"]), int(row["token_id"])): index
+            for index, row in enumerate(rows)
+        }
+        done = {
+            key
+            for key, index in row_index.items()
+            if all(rows[index].get(metric, "") != "" for metric in METRICS)
+        }
+        if len(done) == expected:
+            print(
+                json.dumps(
+                    {"stage": "metrics", "checkpoint": checkpoint, "status": "skip"}
+                ),
+                flush=True,
+            )
+            continue
+        states = base.load_states(args, checkpoint, tokens)
+        model = base.load_model(checkpoint, args.cache_dir, args.device)
+        model.set_attn_implementation("eager")
+        for dynamic_step in samples:
+            for token_index, token in enumerate(tokens):
+                key = (dynamic_step, token["token_id"])
+                if key in done:
+                    continue
+                started = time.perf_counter()
+                state = states[dynamic_step, token_index].to(args.device)
+                jacobian = base.exact_jacobian(
+                    model, state, args.jacobian_chunk_size
+                )
+                spectral_radius = torch.linalg.eigvals(jacobian).abs().max()
+                operator_norm = torch.linalg.svdvals(jacobian)[0]
+                frobenius_norm = torch.linalg.vector_norm(jacobian)
+                result = {
+                    "checkpoint": checkpoint,
+                    "training_step": int(checkpoint.removeprefix("step")),
+                    "dynamic_step": dynamic_step,
+                    **token,
+                    "spectral_radius": float(spectral_radius),
+                    "operator_norm_2": float(operator_norm),
+                    "jacobian_frobenius_norm": float(frobenius_norm),
+                    "runtime_seconds": time.perf_counter() - started,
+                }
+                if key in row_index:
+                    rows[row_index[key]].update(result)
+                else:
+                    row_index[key] = len(rows)
+                    rows.append(result)
+                done.add(key)
+                base.write_csv(part, rows)
+                print(
+                    json.dumps(
+                        {
+                            "stage": "metrics",
+                            "checkpoint": checkpoint,
+                            "dynamic_step": dynamic_step,
+                            "token": token["token"],
+                            "spectral_radius": result["spectral_radius"],
+                            "operator_norm_2": result["operator_norm_2"],
+                            "jacobian_frobenius_norm": result[
+                                "jacobian_frobenius_norm"
+                            ],
+                            "seconds": result["runtime_seconds"],
+                        },
+                        ensure_ascii=False,
+                    ),
+                    flush=True,
+                )
+        del model, states
+        torch.cuda.empty_cache()
+        refresh_outputs(args, checkpoints, samples)
+        print(
+            json.dumps(
+                {
+                    "stage": "metrics",
+                    "checkpoint": checkpoint,
+                    "completed": checkpoint_index + 1,
+                    "total": len(checkpoints),
+                }
+            ),
+            flush=True,
+        )
+    refresh_outputs(args, checkpoints, samples)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--stage", choices=["dynamics", "metrics", "all"], default="all"
+    )
+    parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
+    parser.add_argument(
+        "--upstream-states-root", type=Path, default=Path("/nonexistent")
+    )
+    parser.add_argument("--report-root", type=Path, default=ROOT)
+    parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE)
+    parser.add_argument("--token-manifest", type=Path, default=TOKEN_MANIFEST)
+    parser.add_argument("--device", type=torch.device, default=torch.device("cuda:0"))
+    parser.add_argument("--steps", type=int, default=1024)
+    parser.add_argument("--sample-stride", type=int, default=64)
+    parser.add_argument("--jacobian-chunk-size", type=int, default=16)
+    parser.add_argument("--checkpoints", nargs="+", choices=CHECKPOINTS)
+    parser.add_argument("--max-checkpoints", type=int)
+    parser.add_argument("--overwrite", action="store_true")
+    args = parser.parse_args()
+
+    checkpoints = (args.checkpoints or CHECKPOINTS)[: args.max_checkpoints]
+    tokens = read_tokens(args.token_manifest)
+    samples = sample_steps(args.steps, args.sample_stride)
+    for directory in (
+        args.data_root,
+        args.report_root / "processed",
+    ):
+        directory.mkdir(parents=True, exist_ok=True)
+    print(
+        json.dumps(
+            {
+                "checkpoints": checkpoints,
+                "dynamic_steps": samples,
+                "token_ids": [token["token_id"] for token in tokens],
+                "metrics": list(METRICS),
+                "trace": False,
+            }
+        ),
+        flush=True,
+    )
+    if args.stage in {"dynamics", "all"}:
+        base.dynamics_stage(args, checkpoints, tokens)
+    if args.stage in {"metrics", "all"}:
+        metrics_stage(args, checkpoints, tokens)
+
+
+if __name__ == "__main__":
+    main()

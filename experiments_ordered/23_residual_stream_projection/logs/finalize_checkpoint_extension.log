@@ -1,0 +1,2 @@
+{"output": "/data1/luohaoming/model_feature/experiments_ordered/17_visualize/dynamic_step_projection_visualization.html", "state_checkpoints": 25, "residual_checkpoints": 0, "metric_rows_8token": 425, "metric_rows_100token": 25, "perturb_paths": 22400, "perturb_outcomes": 22400}
+{"status": "complete", "state_rows": 102500, "metric_8token_rows": 425, "metric_100token_rows": 25, "html_bytes": 27856281}

@@ -1,0 +1,81 @@
+{
+  "model": "EleutherAI/pythia-70m",
+  "checkpoint": "step57000",
+  "prompt": "the cat sit on the",
+  "input_ids_shape": [
+    1,
+    5
+  ],
+  "token_ids": [
+    783,
+    5798,
+    1790,
+    327,
+    253
+  ],
+  "tokens": [
+    "the",
+    " cat",
+    " sit",
+    " on",
+    " the"
+  ],
+  "num_input_tokens": 5,
+  "hidden_size": 512,
+  "num_hidden_layers": 6,
+  "vocab_size": 50304,
+  "logits_shape": [
+    1,
+    5,
+    50304
+  ],
+  "captured_shapes": {
+    "embedding": [
+      1,
+      5,
+      512
+    ],
+    "block_0": [
+      1,
+      5,
+      512
+    ],
+    "block_1": [
+      1,
+      5,
+      512
+    ],
+    "block_2": [
+      1,
+      5,
+      512
+    ],
+    "block_3": [
+      1,
+      5,
+      512
+    ],
+    "block_4": [
+      1,
+      5,
+      512
+    ],
+    "block_5": [
+      1,
+      5,
+      512
+    ],
+    "final_layer_norm": [
+      1,
+      5,
+      512
+    ],
+    "lm_head_logits": [
+      1,
+      5,
+      50304
+    ]
+  },
+  "lm_head_hook_matches_output_logits_max_abs_error": 0.0,
+  "alignment_conclusion": "For 5 input tokens, Python logits[:, 4, :] (one-based output position 5) predicts the new token after the full prompt; logits[:, 5, :] does not exist."
+}

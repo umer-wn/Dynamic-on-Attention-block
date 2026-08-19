@@ -1,0 +1,38 @@
+model: EleutherAI/pythia-70m
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+token_manifest: /data1/luohaoming/model_feature/experiments_ordered/16_frequency_stratified_window_jacobian/manifests/frequency_stratified_tokens.csv
+experiment16_basis: /data1/luohaoming/model_feature/experiments_ordered/16_frequency_stratified_window_jacobian/processed/projection_basis.pt
+steps: 1024
+projection_seed: 1616
+checkpoints:
+  - step0
+  - step2000
+  - step3000
+  - step4000
+  - step5000
+  - step7000
+  - step8000
+  - step9000
+  - step10000
+  - step13000
+  - step21000
+  - step25000
+  - step29000
+  - step33000
+  - step37000
+  - step41000
+  - step53000
+  - step57000
+  - step61000
+fine_checkpoints:
+  - step27000
+  - step28000
+  - step39000
+  - step40000
+  - step58000
+  - step59000
+smoke:
+  checkpoint: step10000
+  token_id: 21825
+  steps: 16
+  tolerance: 1.0e-5

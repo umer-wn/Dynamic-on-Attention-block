@@ -1,0 +1,67 @@
+model: EleutherAI/pythia-70m
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+data_root: /data1/luohaoming/model_feature_experiments/experiment19_single_token_attractor_validation
+token_manifest: /data1/luohaoming/model_feature/experiments_ordered/18_fine_grained_window_jacobian/manifests/frequency_stratified_tokens_8.csv
+checkpoints:
+  - step0
+  - step2000
+  - step3000
+  - step4000
+  - step5000
+  - step7000
+  - step8000
+  - step9000
+  - step10000
+  - step13000
+  - step21000
+  - step25000
+  - step29000
+  - step33000
+  - step37000
+  - step41000
+  - step53000
+  - step57000
+  - step61000
+seeds:
+  projection: 1901
+  random_states: 1902
+  recurrence: 1903
+  perturbation: 1904
+  floquet: 1905
+screen:
+  steps: 4096
+  tail_start: 2048
+analysis:
+  max_lag: 256
+  logit_chunk_size: 128
+validation:
+  steps: 16384
+  tail_start: 8192
+  mandatory_checkpoints: [step2000, step9000, step13000, step29000, step41000, step61000]
+shooting:
+  max_iterations: 200
+  tolerance: 1.0e-9
+floquet:
+  krylov_dimensions: [16, 32]
+perturbation:
+  directions: 16
+  relative_scales: [1.0e-6, 1.0e-4, 1.0e-2]
+  periods: 10
+controls:
+  checkpoints: [step0, step13000, step29000, step61000]
+  modes: [full, mlp_residual, vo_residual, no_internal_ln, no_final_ln, no_residual, layer_shuffle]
+  layer_orders:
+    - [5, 4, 3, 2, 1, 0]
+    - [1, 3, 5, 0, 2, 4]
+    - [2, 0, 4, 1, 5, 3]
+  random_init_seeds: [1904, 1905, 1906]
+bifurcation:
+  pairs:
+    - [step8000, step9000]
+    - [step10000, step13000]
+    - [step25000, step29000]
+    - [step29000, step33000]
+    - [step37000, step41000]
+    - [step57000, step61000]
+  coarse_alpha_step: 0.1
+  fine_alpha_step: 0.02

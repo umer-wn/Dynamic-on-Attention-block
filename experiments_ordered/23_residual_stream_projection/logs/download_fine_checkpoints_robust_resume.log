@@ -1,0 +1,66 @@
+2026-08-13T20:29:08+08:00 DOWNLOAD step27000 attempt=1 endpoint=https://hf-mirror.com
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 61908.55it/s]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/59e8890d3c69e2119cc2bece5dc4ae68d2dc8bf8
+2026-08-13T20:29:25+08:00 READY step27000
+2026-08-13T20:29:25+08:00 DOWNLOAD step28000 attempt=1 endpoint=https://hf-mirror.com
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 10205.12it/s]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/0e2814b035c8a02aa8d68de306a73ed37904a289
+2026-08-13T20:29:41+08:00 READY step28000
+2026-08-13T20:29:41+08:00 DOWNLOAD step39000 attempt=1 endpoint=https://hf-mirror.com
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 62601.55it/s]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/66866ff2b9a946db8074a4a78c669e554676ce4c
+2026-08-13T20:29:58+08:00 READY step39000
+2026-08-13T20:29:58+08:00 DOWNLOAD step40000 attempt=1 endpoint=https://hf-mirror.com
+2026-08-13T20:29:58+08:00 RANGE_DOWNLOAD step40000 expected=281715176 sha=677903d2fa9407093088e6dd08ae3d2b0ab76774c6abe58971974c55f7fcaa15
+RANGE_PROGRESS 8388608/281715176
+RANGE_PROGRESS 16777216/281715176
+RANGE_PROGRESS 25165824/281715176
+RANGE_PROGRESS 33554432/281715176
+RANGE_PROGRESS 41943040/281715176
+RANGE_PROGRESS 50331648/281715176
+RANGE_PROGRESS 58720256/281715176
+RANGE_PROGRESS 67108864/281715176
+RANGE_PROGRESS 75497472/281715176
+RANGE_PROGRESS 83886080/281715176
+RANGE_PROGRESS 92274688/281715176
+RANGE_PROGRESS 100663296/281715176
+RANGE_PROGRESS 109051904/281715176
+RANGE_PROGRESS 117440512/281715176
+RANGE_PROGRESS 125829120/281715176
+RANGE_PROGRESS 134217728/281715176
+RANGE_PROGRESS 142606336/281715176
+RANGE_PROGRESS 150994944/281715176
+RANGE_PROGRESS 159383552/281715176
+RANGE_PROGRESS 167772160/281715176
+RANGE_PROGRESS 176160768/281715176
+RANGE_PROGRESS 184549376/281715176
+RANGE_PROGRESS 192937984/281715176
+RANGE_PROGRESS 201326592/281715176
+RANGE_PROGRESS 209715200/281715176
+RANGE_PROGRESS 218103808/281715176
+RANGE_PROGRESS 226492416/281715176
+RANGE_PROGRESS 234881024/281715176
+RANGE_PROGRESS 243269632/281715176
+RANGE_PROGRESS 251658240/281715176
+RANGE_PROGRESS 260046848/281715176
+RANGE_PROGRESS 268435456/281715176
+RANGE_PROGRESS 276824064/281715176
+RANGE_RETRY offset=276824064 attempt=1 endpoint=https://hf-mirror.com/EleutherAI/pythia-70m/resolve/step40000/model.safetensors error=RuntimeError:expected 206 Content-Range, got 429 ''
+RANGE_PROGRESS 281715176/281715176
+RANGE_COMPLETE /home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/blobs/677903d2fa9407093088e6dd08ae3d2b0ab76774c6abe58971974c55f7fcaa15 281715176 677903d2fa9407093088e6dd08ae3d2b0ab76774c6abe58971974c55f7fcaa15
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:00<00:02,  1.04it/s]Fetching 4 files:  50%|█████     | 2/4 [00:02<00:02,  1.45s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:03<00:01,  1.08s/it]Fetching 4 files: 100%|██████████| 4/4 [00:04<00:00,  1.08it/s]Fetching 4 files: 100%|██████████| 4/4 [00:04<00:00,  1.02s/it]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/03829e7b6e418e61d532638093d22545ecdbfc15
+2026-08-13T20:47:39+08:00 READY step40000
+2026-08-13T20:47:39+08:00 DOWNLOAD step58000 attempt=1 endpoint=https://hf-mirror.com
+2026-08-13T20:47:40+08:00 RANGE_DOWNLOAD step58000 expected=281715176 sha=9ad556e5cd603f761f20b83118875edaf83b6837dea6e6309c404872d3f00880
+RANGE_ALREADY_COMPLETE /home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/blobs/9ad556e5cd603f761f20b83118875edaf83b6837dea6e6309c404872d3f00880 281715176 9ad556e5cd603f761f20b83118875edaf83b6837dea6e6309c404872d3f00880
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:00<00:02,  1.21it/s]Fetching 4 files:  50%|█████     | 2/4 [00:01<00:01,  1.32it/s]Fetching 4 files:  75%|███████▌  | 3/4 [00:02<00:00,  1.46it/s]Fetching 4 files: 100%|██████████| 4/4 [00:03<00:00,  1.22it/s]Fetching 4 files: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/259b515af8dfde4af6d36d353a82bc80f6585e71
+2026-08-13T20:48:04+08:00 READY step58000
+2026-08-13T20:48:04+08:00 DOWNLOAD step59000 attempt=1 endpoint=https://hf-mirror.com
+2026-08-13T20:48:04+08:00 RANGE_DOWNLOAD step59000 expected=281715176 sha=14968d8d4b3909384ae6192d8d8ce3c632719995cd1ded008f5b193e77fd4f52
+RANGE_ALREADY_COMPLETE /home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/blobs/14968d8d4b3909384ae6192d8d8ce3c632719995cd1ded008f5b193e77fd4f52 281715176 14968d8d4b3909384ae6192d8d8ce3c632719995cd1ded008f5b193e77fd4f52
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:01<00:04,  1.52s/it]Fetching 4 files:  50%|█████     | 2/4 [00:02<00:02,  1.45s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:03<00:01,  1.24s/it]Fetching 4 files: 100%|██████████| 4/4 [00:04<00:00,  1.01s/it]Fetching 4 files: 100%|██████████| 4/4 [00:04<00:00,  1.14s/it]
+/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/9ddc09aa40b76239c5190a4f2a25ef85ecf1462c
+2026-08-13T21:09:03+08:00 READY step59000
+2026-08-13T21:09:03+08:00 DOWNLOAD_COMPLETE

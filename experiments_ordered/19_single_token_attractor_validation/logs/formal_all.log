@@ -1,0 +1,133 @@
+{"stage": "screen", "status": "start"}
+{"stage": "screen", "condition": "step0", "status": "complete"}
+{"stage": "screen", "condition": "step2000", "status": "complete"}
+{"stage": "screen", "condition": "step3000", "status": "complete"}
+{"stage": "screen", "condition": "step4000", "status": "complete"}
+{"stage": "screen", "condition": "step5000", "status": "complete"}
+{"stage": "screen", "condition": "step7000", "status": "complete"}
+{"stage": "screen", "condition": "step8000", "status": "complete"}
+{"stage": "screen", "condition": "step9000", "status": "complete"}
+{"stage": "screen", "condition": "step10000", "status": "complete"}
+{"stage": "screen", "condition": "step13000", "status": "complete"}
+{"stage": "screen", "condition": "step21000", "status": "complete"}
+{"stage": "screen", "condition": "step25000", "status": "complete"}
+{"stage": "screen", "condition": "step29000", "status": "complete"}
+{"stage": "screen", "condition": "step33000", "status": "complete"}
+{"stage": "screen", "condition": "step37000", "status": "complete"}
+{"stage": "screen", "condition": "step41000", "status": "complete"}
+{"stage": "screen", "condition": "step53000", "status": "complete"}
+{"stage": "screen", "condition": "step57000", "status": "complete"}
+{"stage": "screen", "condition": "step61000", "status": "complete"}
+{"stage": "screen", "status": "complete"}
+{"stage": "validate", "status": "start"}
+{"stage": "validate", "condition": "step2000", "status": "complete"}
+{"stage": "validate", "condition": "step9000", "status": "complete"}
+{"stage": "validate", "condition": "step13000", "status": "complete"}
+{"stage": "validate", "condition": "step29000", "status": "complete"}
+{"stage": "validate", "condition": "step41000", "status": "complete"}
+{"stage": "validate", "condition": "step61000", "status": "complete"}
+{"stage": "validate", "condition": "step57000", "status": "complete"}
+{"stage": "validate", "condition": "step10000", "status": "complete"}
+{"stage": "validate", "status": "complete"}
+{"stage": "controls", "status": "start"}
+{"stage": "controls_screen", "condition": "step0__full", "status": "complete"}
+{"stage": "controls_validate", "condition": "step0__full", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__mlp_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__vo_residual", "status": "complete"}
+{"stage": "controls_validate", "condition": "step0__vo_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__no_internal_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__no_final_ln", "status": "complete"}
+{"stage": "controls_validate", "condition": "step0__no_final_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__no_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_0", "status": "complete"}
+{"stage": "controls_validate", "condition": "step0__layer_shuffle_0", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_1", "status": "complete"}
+{"stage": "controls_screen", "condition": "step0__layer_shuffle_2", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__full", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__mlp_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__vo_residual", "status": "complete"}
+{"stage": "controls_validate", "condition": "step13000__vo_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__no_internal_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__no_final_ln", "status": "complete"}
+{"stage": "controls_validate", "condition": "step13000__no_final_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__no_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_0", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_1", "status": "complete"}
+{"stage": "controls_validate", "condition": "step13000__layer_shuffle_1", "status": "complete"}
+{"stage": "controls_screen", "condition": "step13000__layer_shuffle_2", "status": "complete"}
+{"stage": "controls_validate", "condition": "step13000__layer_shuffle_2", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__full", "status": "complete"}
+{"stage": "controls_validate", "condition": "step29000__full", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__mlp_residual", "status": "complete"}
+{"stage": "controls_validate", "condition": "step29000__mlp_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__vo_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__no_internal_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__no_final_ln", "status": "complete"}
+{"stage": "controls_validate", "condition": "step29000__no_final_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__no_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_0", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_1", "status": "complete"}
+{"stage": "controls_screen", "condition": "step29000__layer_shuffle_2", "status": "complete"}
+{"stage": "controls_validate", "condition": "step29000__layer_shuffle_2", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__full", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__mlp_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__vo_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__no_internal_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__no_final_ln", "status": "complete"}
+{"stage": "controls_validate", "condition": "step61000__no_final_ln", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__no_residual", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_0", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_1", "status": "complete"}
+{"stage": "controls_screen", "condition": "step61000__layer_shuffle_2", "status": "complete"}
+Traceback (most recent call last):
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 1238, in <module>
+    main()
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 1227, in main
+    controls_stage(args, config, tokens)
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 804, in controls_stage
+    current = execute_condition(
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 508, in execute_condition
+    summaries, recurrence = analyze_trace(
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 390, in analyze_trace
+    lyapunov, _ = finite_time_lyapunov(
+  File "/data1/luohaoming/model_feature/src/attractor_validation.py", line 143, in finite_time_lyapunov
+    _, next_tangent = torch.func.jvp(mapping, (state,), (tangent,))
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 1043, in jvp
+    return _jvp_with_argnums(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 1102, in _jvp_with_argnums
+    result_duals = func(*duals)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data1/luohaoming/model_feature/experiments_ordered/19_single_token_attractor_validation/scripts/run_experiment19.py", line 210, in forward
+    output = self.model.gpt_neox(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/models/gpt_neox/modeling_gpt_neox.py", line 475, in forward
+    outputs = layer(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/models/gpt_neox/modeling_gpt_neox.py", line 221, in forward
+    attn_output, attn_weights = self.attention(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/transformers/models/gpt_neox/modeling_gpt_neox.py", line 157, in forward
+    qkv = self.query_key_value(hidden_states).view(hidden_shape).transpose(1, 2)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: expected mat1 and mat2 to have the same dtype, but got: float != c10::Half

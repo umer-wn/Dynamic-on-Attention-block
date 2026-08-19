@@ -1,0 +1,16 @@
+{
+  "checkpoint": "step53000",
+  "steps": 1024,
+  "token_ids": [
+    21825,
+    23778,
+    19211,
+    6574
+  ],
+  "main_rows": 4096,
+  "component_rows": 12288,
+  "projection_seed": 1616,
+  "projection_sha256": "ec1360daadf0a820abed4f77c5a886edd56a6a594fd0c33e44a1f50f3c5ff0c9",
+  "runtime_seconds": 6.779704589396715,
+  "status": "complete"
+}

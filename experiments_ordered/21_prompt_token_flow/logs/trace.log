@@ -1,0 +1,140 @@
+{
+  "model": "EleutherAI/pythia-70m",
+  "checkpoint": "step57000",
+  "prompt": "the cat sit on the",
+  "input_ids_shape": [
+    1,
+    5
+  ],
+  "token_ids": [
+    783,
+    5798,
+    1790,
+    327,
+    253
+  ],
+  "tokens": [
+    "the",
+    " cat",
+    " sit",
+    " on",
+    " the"
+  ],
+  "num_input_tokens": 5,
+  "hidden_size": 512,
+  "num_hidden_layers": 6,
+  "vocab_size": 50304,
+  "logits_shape": [
+    1,
+    5,
+    50304
+  ],
+  "captured_shapes": {
+    "embedding": [
+      1,
+      5,
+      512
+    ],
+    "block_0": [
+      1,
+      5,
+      512
+    ],
+    "block_1": [
+      1,
+      5,
+      512
+    ],
+    "block_2": [
+      1,
+      5,
+      512
+    ],
+    "block_3": [
+      1,
+      5,
+      512
+    ],
+    "block_4": [
+      1,
+      5,
+      512
+    ],
+    "block_5": [
+      1,
+      5,
+      512
+    ],
+    "final_layer_norm": [
+      1,
+      5,
+      512
+    ],
+    "lm_head_logits": [
+      1,
+      5,
+      50304
+    ]
+  },
+  "lm_head_hook_matches_output_logits_max_abs_error": 0.0,
+  "alignment_conclusion": "For 5 input tokens, Python logits[:, 4, :] (one-based output position 5) predicts the new token after the full prompt; logits[:, 5, :] does not exist."
+}
+{
+  "predictions": [
+    {
+      "logits_index_zero_based": 0,
+      "logits_index_one_based": 1,
+      "context": "the",
+      "actual_next_input_token": " cat",
+      "actual_next_probability": 2.8092748834751546e-05,
+      "top1_token_id": 1083,
+      "top1_token": " case",
+      "top1_probability": 0.008115645498037338,
+      "top5_json": "[{\"token_id\": 1083, \"token\": \" case\", \"probability\": 0.008115645498037338}, {\"token_id\": 14, \"token\": \"-\", \"probability\": 0.005711619276553392}, {\"token_id\": 1533, \"token\": \" world\", \"probability\": 0.0055600604973733425}, {\"token_id\": 1127, \"token\": \" point\", \"probability\": 0.004492131527513266}, {\"token_id\": 187, \"token\": \"\\n\", \"probability\": 0.004259134642779827}]"
+    },
+    {
+      "logits_index_zero_based": 1,
+      "logits_index_one_based": 2,
+      "context": "the cat",
+      "actual_next_input_token": " sit",
+      "actual_next_probability": 0.00033547126804478467,
+      "top1_token_id": 13,
+      "top1_token": ",",
+      "top1_probability": 0.08779537677764893,
+      "top5_json": "[{\"token_id\": 13, \"token\": \",\", \"probability\": 0.08779537677764893}, {\"token_id\": 15, \"token\": \".\", \"probability\": 0.07008654624223709}, {\"token_id\": 285, \"token\": \" and\", \"probability\": 0.038577042520046234}, {\"token_id\": 310, \"token\": \" is\", \"probability\": 0.03539910539984703}, {\"token_id\": 449, \"token\": \".\\\"\", \"probability\": 0.03098032809793949}]"
+    },
+    {
+      "logits_index_zero_based": 2,
+      "logits_index_one_based": 3,
+      "context": "the cat sit",
+      "actual_next_input_token": " on",
+      "actual_next_probability": 0.052560124546289444,
+      "top1_token_id": 350,
+      "top1_token": "ter",
+      "top1_probability": 0.10931751132011414,
+      "top5_json": "[{\"token_id\": 350, \"token\": \"ter\", \"probability\": 0.10931751132011414}, {\"token_id\": 1066, \"token\": \" down\", \"probability\": 0.10437986254692078}, {\"token_id\": 15, \"token\": \".\", \"probability\": 0.06791634857654572}, {\"token_id\": 327, \"token\": \" on\", \"probability\": 0.052560124546289444}, {\"token_id\": 13, \"token\": \",\", \"probability\": 0.041678085923194885}]"
+    },
+    {
+      "logits_index_zero_based": 3,
+      "logits_index_one_based": 4,
+      "context": "the cat sit on",
+      "actual_next_input_token": " the",
+      "actual_next_probability": 0.5358878374099731,
+      "top1_token_id": 253,
+      "top1_token": " the",
+      "top1_probability": 0.5358878374099731,
+      "top5_json": "[{\"token_id\": 253, \"token\": \" the\", \"probability\": 0.5358878374099731}, {\"token_id\": 247, \"token\": \" a\", \"probability\": 0.08149503171443939}, {\"token_id\": 521, \"token\": \" his\", \"probability\": 0.0748860314488411}, {\"token_id\": 617, \"token\": \" her\", \"probability\": 0.02886279672384262}, {\"token_id\": 634, \"token\": \" your\", \"probability\": 0.014833621680736542}]"
+    },
+    {
+      "logits_index_zero_based": 4,
+      "logits_index_one_based": 5,
+      "context": "the cat sit on the",
+      "actual_next_input_token": "<new token after prompt>",
+      "actual_next_probability": "",
+      "top1_token_id": 5254,
+      "top1_token": " floor",
+      "top1_probability": 0.10335417091846466,
+      "top5_json": "[{\"token_id\": 5254, \"token\": \" floor\", \"probability\": 0.10335417091846466}, {\"token_id\": 2829, \"token\": \" table\", \"probability\": 0.03324192389845848}, {\"token_id\": 896, \"token\": \" back\", \"probability\": 0.027404261752963066}, {\"token_id\": 10955, \"token\": \" bench\", \"probability\": 0.026599803939461708}, {\"token_id\": 28392, \"token\": \" porch\", \"probability\": 0.026195703074336052}]"
+    }
+  ]
+}

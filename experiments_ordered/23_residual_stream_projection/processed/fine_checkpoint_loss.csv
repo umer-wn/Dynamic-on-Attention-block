@@ -1,0 +1,7 @@
+﻿checkpoint,training_step,dataset,sample_seed,sample_count,sequence_length,manifest_path,proof_pile2_test_loss,proof_pile2_test_perplexity,proof_pile2_test_predicted_tokens,runtime_seconds
+step27000,27000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.883779397086492,48.607575686731465,32256,3.3074039667844772
+step28000,28000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.941887537638346,51.515747500504524,32256,0.4412197060883045
+step39000,39000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.849399899679517,46.96487113916143,32256,0.4559718742966652
+step40000,40000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.8590780893961587,47.4216127227702,32256,0.4428700618445873
+step58000,58000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.866296102130224,47.765140830927784,32256,0.4648337736725807
+step59000,59000,EleutherAI/proof-pile-2,1818,512,64,/home/luohaoming/proof_pile2/manifests/proof_pile2_test_512_seed1818.jsonl,3.859423115139916,47.43797722289461,32256,0.4494314193725586

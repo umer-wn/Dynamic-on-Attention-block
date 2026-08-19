@@ -1,0 +1,23 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+{"checkpoint": "step10000", "tasks": 73}
+{"checkpoint": "step15000", "tasks": 1}
+{"checkpoint": "step19000", "tasks": 1}
+{"checkpoint": "step22000", "tasks": 1}
+{"checkpoint": "step29000", "tasks": 73}
+{"checkpoint": "step30000", "tasks": 1}
+{"checkpoint": "step32000", "tasks": 1}
+{"checkpoint": "step36000", "tasks": 1}
+{"checkpoint": "step38000", "tasks": 1}
+{"checkpoint": "step40000", "tasks": 1}
+{"checkpoint": "step41000", "tasks": 73}
+{"checkpoint": "step42000", "tasks": 1}
+{"checkpoint": "step43000", "tasks": 1}
+{"checkpoint": "step44000", "tasks": 1}
+{"checkpoint": "step45000", "tasks": 1}
+{"checkpoint": "step47000", "tasks": 1}
+{"checkpoint": "step48000", "tasks": 1}
+{"checkpoint": "step50000", "tasks": 1}
+{"checkpoint": "step53000", "tasks": 1}
+{"checkpoint": "step57000", "tasks": 73}
+{"checkpoint": "step60000", "tasks": 1}
+{"status": "complete", "original_orbits": 288, "dense_orbits": 21, "phase_residual_rows": 35554, "stage4_system_rows": 96, "maximum_p95_recompute_absolute_difference": 2.6824082510757276e-09, "variance_definition": "population variance: mean((ri - mean(ri))**2)"}

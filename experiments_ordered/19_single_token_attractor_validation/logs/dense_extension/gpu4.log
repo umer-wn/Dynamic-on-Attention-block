@@ -1,0 +1,4 @@
+{"checkpoint": "step47000", "period": 67, "residual": 0.0036542266607284546, "stability": "shooting_failed", "gain_geomean": 0.5169086068029071, "seconds": 3.3}
+{"checkpoint": "step48000", "period": 197, "residual": 2.694482645893004e-07, "stability": "stable", "gain_geomean": 0.3477417917036994, "seconds": 374.3}
+{"checkpoint": "step50000", "status": "skip_complete"}
+{"checkpoint": "step53000", "status": "skip_complete"}

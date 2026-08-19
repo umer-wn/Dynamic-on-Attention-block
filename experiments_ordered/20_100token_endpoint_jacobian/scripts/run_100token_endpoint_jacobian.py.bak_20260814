@@ -1,0 +1,370 @@
+#!/usr/bin/env python
+from __future__ import annotations
+
+import argparse
+import csv
+import importlib.util
+import json
+import math
+import random
+import statistics
+import sys
+import time
+from collections import Counter
+from pathlib import Path
+
+import numpy as np
+import torch
+from datasets import Dataset
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from transformers import AutoTokenizer
+
+
+REPO = Path(__file__).resolve().parents[3]
+EXP15_SCRIPT = REPO / "experiments_ordered/15_window_jacobian_token_projection/scripts/run_experiment15.py"
+SPEC = importlib.util.spec_from_file_location("experiment15_base", EXP15_SCRIPT)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"cannot import {EXP15_SCRIPT}")
+base = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(base)
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "manifests/tokens_100_frequency_deciles.csv"
+PARTS = ROOT / "processed/checkpoint_parts"
+SUMMARY = ROOT / "processed/checkpoint_metric_summary.csv"
+CHECKPOINTS = [
+    "step0", "step2000", "step3000", "step4000", "step5000", "step7000",
+    "step8000", "step9000", "step10000", "step13000", "step21000", "step25000",
+    "step29000", "step33000", "step37000", "step41000", "step53000", "step57000",
+    "step61000",
+]
+METRICS = ["spectral_radius", "lyapunov_exponent_last_256", "normalized_frobenius_norm"]
+
+
+def write_csv(path: Path, rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not rows:
+        return
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def read_csv(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def prepare_manifest(args) -> None:
+    tokenizer = AutoTokenizer.from_pretrained(
+        "EleutherAI/pythia-70m",
+        revision="step100000",
+        cache_dir=str(args.cache_dir),
+        local_files_only=True,
+    )
+    dataset = Dataset.from_file(str(args.wikitext_train_arrow))
+    text = "\n".join(str(row["text"]) for row in dataset)
+    counts = Counter(int(x) for x in tokenizer(text, add_special_tokens=False)["input_ids"])
+    special = set(int(x) for x in tokenizer.all_special_ids)
+    candidates = [
+        (token_id, count)
+        for token_id, count in counts.items()
+        if token_id not in special and 0 <= token_id < len(tokenizer)
+    ]
+    candidates.sort(key=lambda item: (item[1], item[0]))
+    if len(candidates) < args.num_tokens:
+        raise RuntimeError(f"only {len(candidates)} eligible token types")
+    rng = random.Random(args.token_seed)
+    selected: list[tuple[int, int, int]] = []
+    for frequency_decile in range(10):
+        start = len(candidates) * frequency_decile // 10
+        end = len(candidates) * (frequency_decile + 1) // 10
+        stratum = candidates[start:end]
+        take = args.num_tokens // 10 + (1 if frequency_decile < args.num_tokens % 10 else 0)
+        for token_id, count in rng.sample(stratum, take):
+            selected.append((token_id, count, frequency_decile))
+    rows = []
+    for index, (token_id, count, decile) in enumerate(selected):
+        rows.append(
+            {
+                "selection_index": index,
+                "token_id": token_id,
+                "token": tokenizer.decode([token_id]),
+                "wikitext_train_count": count,
+                "frequency_decile": decile,
+                "selection_seed": args.token_seed,
+            }
+        )
+    write_csv(args.manifest, rows)
+    print(json.dumps({"stage": "prepare", "tokens": len(rows), "manifest": str(args.manifest)}), flush=True)
+
+
+def load_manifest(path: Path, expected: int) -> list[dict]:
+    rows = read_csv(path)
+    if len(rows) != expected:
+        raise RuntimeError(f"expected {expected} manifest rows, found {len(rows)} in {path}")
+    return [
+        {
+            "selection_index": int(row["selection_index"]),
+            "token_id": int(row["token_id"]),
+            "token": row["token"],
+            "wikitext_train_count": int(row["wikitext_train_count"]),
+            "frequency_decile": int(row["frequency_decile"]),
+            "selection_seed": int(row["selection_seed"]),
+        }
+        for row in rows
+    ]
+
+
+def endpoint_and_lyapunov(
+    model,
+    tokens: list[dict],
+    steps: int,
+    device: torch.device,
+    seed: int,
+    epsilon: float,
+    window: int,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    ids = torch.tensor([row["token_id"] for row in tokens], device=device)
+    state = model.get_input_embeddings()(ids).detach().float()
+    attention_mask = torch.ones((len(tokens), 1), device=device, dtype=torch.long)
+    position_ids = torch.zeros((1, 1), device=device, dtype=torch.long)
+
+    def mapping(value: torch.Tensor) -> torch.Tensor:
+        return model.gpt_neox(
+            inputs_embeds=value.unsqueeze(1),
+            attention_mask=attention_mask,
+            position_ids=position_ids,
+            use_cache=False,
+            return_dict=True,
+        ).last_hidden_state[:, -1, :].float()
+
+    generator = torch.Generator(device="cpu").manual_seed(seed)
+    tangent = torch.randn(state.shape, generator=generator, dtype=torch.float32).to(device)
+    tangent = tangent / tangent.norm(dim=1, keepdim=True)
+    log_sum = torch.zeros(len(tokens), device=device, dtype=torch.float64)
+    tail_logs: list[torch.Tensor] = []
+    for dynamic_step in range(steps):
+        next_state, next_tangent = torch.func.jvp(mapping, (state,), (tangent,))
+        growth = next_tangent.norm(dim=1).clamp_min(epsilon)
+        log_growth = growth.double().log()
+        log_sum += log_growth
+        if dynamic_step >= steps - window:
+            tail_logs.append(log_growth.detach().cpu())
+        state = next_state.detach()
+        tangent = (next_tangent / growth.unsqueeze(1)).detach()
+        if (dynamic_step + 1) % 256 == 0:
+            print(json.dumps({"stage": "dynamics_lyapunov", "dynamic_step": dynamic_step + 1}), flush=True)
+    return (
+        state.detach().cpu(),
+        torch.stack(tail_logs).mean(dim=0),
+        (log_sum / steps).detach().cpu(),
+    )
+
+
+def compute_checkpoint(args, checkpoint: str) -> None:
+    tokens = load_manifest(args.manifest, args.num_tokens)
+    part = args.parts / f"{checkpoint}.csv"
+    rows = [] if args.overwrite else read_csv(part)
+    completed = {int(row["token_id"]) for row in rows}
+    lyapunov_complete = len(rows) == len(tokens) and all(
+        row.get("lyapunov_exponent_last_256", "") != "" for row in rows
+    )
+    if len(completed) == len(tokens) and lyapunov_complete:
+        print(json.dumps({"stage": "checkpoint", "checkpoint": checkpoint, "status": "skip"}), flush=True)
+        return
+    model = base.load_model(checkpoint, args.cache_dir, args.device)
+    model.set_attn_implementation("eager")
+    started_dynamics = time.perf_counter()
+    states, lyapunov_tail, lyapunov_overall = endpoint_and_lyapunov(
+        model, tokens, args.steps, args.device, args.lyapunov_seed,
+        args.lyapunov_epsilon, args.lyapunov_window,
+    )
+    dynamics_seconds = time.perf_counter() - started_dynamics
+    row_by_id = {int(row["token_id"]): row for row in rows}
+    for index, token in enumerate(tokens):
+        if token["token_id"] in row_by_id:
+            row_by_id[token["token_id"]].update({
+                "lyapunov_window_start": args.steps - args.lyapunov_window,
+                "lyapunov_window_end": args.steps,
+                "lyapunov_exponent_last_256": float(lyapunov_tail[index]),
+                "lyapunov_exponent_0_1024": float(lyapunov_overall[index]),
+                "geometric_tangent_factor_last_256": math.exp(float(lyapunov_tail[index])),
+            })
+    if rows:
+        rows.sort(key=lambda row: int(row["selection_index"]))
+        write_csv(part, rows)
+    for index, token in enumerate(tokens):
+        if token["token_id"] in completed:
+            continue
+        started = time.perf_counter()
+        state = states[index].to(args.device)
+        jacobian = base.exact_jacobian(model, state, args.jacobian_chunk_size)
+        eigenvalues = torch.linalg.eigvals(jacobian)
+        spectral_radius = eigenvalues.abs().max()
+        spectral_abscissa = eigenvalues.real.max()
+        frobenius_norm = torch.linalg.matrix_norm(jacobian, ord="fro")
+        result = {
+            "checkpoint": checkpoint,
+            "training_step": int(checkpoint.removeprefix("step")),
+            "dynamic_step": args.steps,
+            **token,
+            "spectral_radius": float(spectral_radius),
+            "spectral_abscissa": float(spectral_abscissa),
+            "jacobian_frobenius_norm": float(frobenius_norm),
+            "normalized_frobenius_norm": float(frobenius_norm / math.sqrt(jacobian.shape[0])),
+            "lyapunov_window_start": args.steps - args.lyapunov_window,
+            "lyapunov_window_end": args.steps,
+            "lyapunov_exponent_last_256": float(lyapunov_tail[index]),
+            "lyapunov_exponent_0_1024": float(lyapunov_overall[index]),
+            "geometric_tangent_factor_last_256": math.exp(float(lyapunov_tail[index])),
+            "hidden_state_norm": float(torch.linalg.vector_norm(state)),
+            "runtime_seconds": time.perf_counter() - started,
+            "dynamics_runtime_seconds_checkpoint": dynamics_seconds,
+        }
+        rows.append(result)
+        completed.add(token["token_id"])
+        rows.sort(key=lambda row: int(row["selection_index"]))
+        write_csv(part, rows)
+        print(
+            json.dumps(
+                {
+                    "stage": "jacobian",
+                    "checkpoint": checkpoint,
+                    "completed": len(completed),
+                    "total": len(tokens),
+                    "token": token["token"],
+                    "rho": result["spectral_radius"],
+                    "alpha": result["spectral_abscissa"],
+                    "lyapunov_last_256": result["lyapunov_exponent_last_256"],
+                    "normalized_frobenius": result["normalized_frobenius_norm"],
+                    "seconds": result["runtime_seconds"],
+                },
+                ensure_ascii=False,
+            ),
+            flush=True,
+        )
+    del model
+    torch.cuda.empty_cache()
+
+
+def summarize(args) -> None:
+    summary_rows = []
+    for checkpoint in CHECKPOINTS:
+        rows = read_csv(args.parts / f"{checkpoint}.csv")
+        if len(rows) != args.num_tokens:
+            raise RuntimeError(f"{checkpoint}: expected {args.num_tokens} rows, found {len(rows)}")
+        summary = {
+            "checkpoint": checkpoint,
+            "training_step": int(checkpoint.removeprefix("step")),
+            "dynamic_step": args.steps,
+            "token_count": len(rows),
+            "token_selection": "WikiText-2 train token types; 10 frequency deciles; paired across checkpoints",
+            "token_seed": args.token_seed,
+        }
+        for metric in METRICS:
+            values = np.asarray([float(row[metric]) for row in rows], dtype=np.float64)
+            mean = float(values.mean())
+            std = float(values.std(ddof=1))
+            sem = std / math.sqrt(len(values))
+            summary.update(
+                {
+                    f"{metric}_mean": mean,
+                    f"{metric}_std": std,
+                    f"{metric}_median": float(np.median(values)),
+                    f"{metric}_min": float(values.min()),
+                    f"{metric}_max": float(values.max()),
+                    f"{metric}_sem": sem,
+                    f"{metric}_ci95_low": mean - 1.96 * sem,
+                    f"{metric}_ci95_high": mean + 1.96 * sem,
+                }
+            )
+        summary_rows.append(summary)
+    write_csv(args.summary, summary_rows)
+    print(json.dumps({"stage": "summary", "rows": summary_rows}, ensure_ascii=False), flush=True)
+
+
+def plot_three_metrics(rows: list[dict], figures: Path) -> None:
+    figures.mkdir(parents=True, exist_ok=True)
+    rows = sorted(rows, key=lambda row: int(row["training_step"]))
+    x = np.asarray([int(row["training_step"]) for row in rows], dtype=np.float64)
+    definitions = [
+        ("spectral_radius", "Spectral radius at x₁₀₂₄", "ρ(J)", 1.0),
+        ("lyapunov_exponent_0_1024", "Lyapunov exponent over steps 0–1024", "λ per step", 0.0),
+        ("normalized_frobenius_norm", "Normalized Frobenius norm at x₁₀₂₄", "‖J‖F / √512", 1.0),
+    ]
+    colors = ["#2f6f9f", "#c44e52", "#3b8c6e"]
+    fig, axes = plt.subplots(3, 1, figsize=(13, 12), sharex=True)
+    for ax, (metric, title, ylabel, reference), color in zip(axes, definitions, colors):
+        mean = np.asarray([float(row[f"{metric}_mean"]) for row in rows])
+        low = np.asarray([float(row[f"{metric}_ci95_low"]) for row in rows])
+        high = np.asarray([float(row[f"{metric}_ci95_high"]) for row in rows])
+        ax.fill_between(x, low, high, color=color, alpha=0.18, label="95% CI over 100 tokens")
+        ax.plot(x, mean, color=color, marker="o", ms=4.5, lw=1.6, label="mean over 100 tokens")
+        ax.axhline(reference, color="black", ls="--", lw=0.9, alpha=0.65)
+        ax.set_title(title)
+        ax.set_ylabel(ylabel)
+        ax.grid(alpha=0.22)
+        ax.legend(loc="best", frameon=False)
+    axes[-1].set_xlabel("Pythia training checkpoint step")
+    axes[-1].set_xticks(x)
+    axes[-1].set_xticklabels([str(int(value)) for value in x], rotation=45, ha="right")
+    fig.suptitle("Pythia-70M · 100-token paired endpoint/JVP metrics", fontsize=15)
+    fig.tight_layout()
+    fig.savefig(figures / "spectral_radius_lyapunov_normalized_frobenius_by_checkpoint.png", dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+    for metric, title, ylabel, reference in definitions:
+        color = colors[[item[0] for item in definitions].index(metric)]
+        mean = np.asarray([float(row[f"{metric}_mean"]) for row in rows])
+        low = np.asarray([float(row[f"{metric}_ci95_low"]) for row in rows])
+        high = np.asarray([float(row[f"{metric}_ci95_high"]) for row in rows])
+        fig, ax = plt.subplots(figsize=(12, 5.5))
+        ax.fill_between(x, low, high, color=color, alpha=0.18)
+        ax.plot(x, mean, color=color, marker="o", lw=1.7)
+        ax.axhline(reference, color="black", ls="--", lw=0.9, alpha=0.65)
+        ax.set(title=title, xlabel="Pythia training checkpoint step", ylabel=ylabel)
+        ax.set_xticks(x, [str(int(value)) for value in x], rotation=45, ha="right")
+        ax.grid(alpha=0.22)
+        fig.tight_layout()
+        fig.savefig(figures / f"{metric}_by_checkpoint.png", dpi=200, bbox_inches="tight")
+        plt.close(fig)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--stage", choices=["prepare", "compute", "summarize"], required=True)
+    parser.add_argument("--checkpoint", choices=CHECKPOINTS)
+    parser.add_argument("--device", type=torch.device, default=torch.device("cuda:1"))
+    parser.add_argument("--steps", type=int, default=1024)
+    parser.add_argument("--num-tokens", type=int, default=100)
+    parser.add_argument("--token-seed", type=int, default=190905176)
+    parser.add_argument("--lyapunov-seed", type=int, default=1617)
+    parser.add_argument("--lyapunov-epsilon", type=float, default=1e-30)
+    parser.add_argument("--lyapunov-window", type=int, default=256)
+    parser.add_argument("--jacobian-chunk-size", type=int, default=128)
+    parser.add_argument("--cache-dir", type=Path, default=base.DEFAULT_CACHE)
+    parser.add_argument("--wikitext-train-arrow", type=Path, default=base.DEFAULT_ARROW)
+    parser.add_argument("--manifest", type=Path, default=MANIFEST)
+    parser.add_argument("--parts", type=Path, default=PARTS)
+    parser.add_argument("--summary", type=Path, default=SUMMARY)
+    parser.add_argument("--overwrite", action="store_true")
+    args = parser.parse_args()
+    if args.stage == "prepare":
+        prepare_manifest(args)
+    elif args.stage == "compute":
+        if not args.checkpoint:
+            parser.error("--checkpoint is required for --stage compute")
+        compute_checkpoint(args, args.checkpoint)
+    else:
+        summarize(args)
+
+
+if __name__ == "__main__":
+    main()

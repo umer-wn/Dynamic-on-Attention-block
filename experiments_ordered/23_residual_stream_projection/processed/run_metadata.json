@@ -1,0 +1,48 @@
+{
+  "model": "EleutherAI/pythia-70m",
+  "checkpoints": [
+    "step27000",
+    "step28000",
+    "step39000",
+    "step40000",
+    "step58000",
+    "step59000"
+  ],
+  "steps": 1024,
+  "tokens": [
+    {
+      "selection_index": 0,
+      "token_id": 21825,
+      "token": " clones",
+      "wikitext_train_count": 2,
+      "frequency_bin": 0
+    },
+    {
+      "selection_index": 1,
+      "token_id": 23778,
+      "token": " motive",
+      "wikitext_train_count": 8,
+      "frequency_bin": 2
+    },
+    {
+      "selection_index": 2,
+      "token_id": 19211,
+      "token": " cabinet",
+      "wikitext_train_count": 33,
+      "frequency_bin": 5
+    },
+    {
+      "selection_index": 3,
+      "token_id": 6574,
+      "token": " miles",
+      "wikitext_train_count": 404,
+      "frequency_bin": 7
+    }
+  ],
+  "main_rows": 24576,
+  "component_rows": 73728,
+  "projection_seed": 1616,
+  "projection_sha256": "ec1360daadf0a820abed4f77c5a886edd56a6a594fd0c33e44a1f50f3c5ff0c9",
+  "dynamic_step_semantics": "row t is the update x_t -> x_(t+1)",
+  "primary_vector": "residual_internal = input_to_final_layer_norm - x_t"
+}

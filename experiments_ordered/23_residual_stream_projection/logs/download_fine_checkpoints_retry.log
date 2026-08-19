@@ -1,0 +1,576 @@
+download step27000 attempt 1
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 6158d802-9c26-4abc-aa5f-2d3f749b0040)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 2
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 18ca2f58-0e61-4014-ae34-2c9c3afc81bc)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 3
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: d6569e9c-1616-430f-a468-725fcb8ab71b)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 4
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 81499376-0f29-4053-a75c-2404c01a74f3)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 5
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 0c2646e8-164e-4f9b-b297-ea6fef0717c4)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 6
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 7c1ad4a0-3b00-49b7-99f3-9813ba2414a4)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 7
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 75c3ee1f-8561-4863-8ef4-839d09cb98dc)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+download step27000 attempt 8
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/util/retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 165, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2867, in repo_info
+    return method(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/hf_api.py", line 2660, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /api/models/EleutherAI/pythia-70m/revision/step27000 (Caused by NewConnectionError("HTTPSConnection(host=\'huggingface.co\', port=443): Failed to establish a new connection: [Errno 110] Connection timed out"))'), '(Request ID: 8f621550-045e-4b10-aed7-5a16dbde4ae0)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 248, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.

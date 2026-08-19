@@ -1,0 +1,63 @@
+download step27000 via hf-mirror
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:03,  1.31it/s]Fetching 6 files:  17%|█▋        | 1/6 [41:43<3:28:36, 2503.35s/it]
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 903, in _error_catcher
+    yield
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1049, in _raw_read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+urllib3.exceptions.IncompleteRead: IncompleteRead(249861461 bytes read, 31853715 more expected)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/models.py", line 820, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1257, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1149, in read
+    data = self._raw_read(amt)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 1057, in _raw_read
+    self._fp.close()
+  File "/usr/lib64/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/urllib3/response.py", line 927, in _error_catcher
+    raise ProtocolError(arg, e) from e
+urllib3.exceptions.ProtocolError: ('Connection broken: IncompleteRead(249861461 bytes read, 31853715 more expected)', IncompleteRead(249861461 bytes read, 31853715 more expected))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/tqdm/std.py", line 1187, in __iter__
+    for obj in iterable:
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 609, in result_iterator
+    yield fs.pop().result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 446, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1175, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1742, in _download_to_tmp_and_move
+    http_get(
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 500, in http_get
+    for chunk in r.iter_content(chunk_size=constants.DOWNLOAD_CHUNK_SIZE):
+  File "/public/luohaoming/model_feature/.venv/lib64/python3.9/site-packages/requests/models.py", line 822, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ('Connection broken: IncompleteRead(249861461 bytes read, 31853715 more expected)', IncompleteRead(249861461 bytes read, 31853715 more expected))

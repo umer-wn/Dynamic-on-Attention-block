@@ -1,0 +1,6 @@
+﻿position_zero_based,position_one_based,token_id,token,prefix_visible_to_logits,logits_index_zero_based,predicts_input_position_zero_based,actual_next_input_token
+0,1,783,the,the,0,1, cat
+1,2,5798, cat,the cat,1,2, sit
+2,3,1790, sit,the cat sit,2,3, on
+3,4,327, on,the cat sit on,3,4, the
+4,5,253, the,the cat sit on the,4,,<new token after prompt>
