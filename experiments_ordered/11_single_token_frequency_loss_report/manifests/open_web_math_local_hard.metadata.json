@@ -1,0 +1,46 @@
+{
+  "source_id": "open_web_math_local_hard",
+  "dataset_name": "open-web-math/open-web-math",
+  "dataset_revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+  "config": "local_math_natural_language",
+  "split": "train_local_cache",
+  "local_only": true,
+  "source_files": [
+    {
+      "path": "/home/luohaoming/.cache/huggingface/hub/datasets--open-web-math--open-web-math/snapshots/fde8ef8de2300f5e778f56261843dab89f230815/data/train-00000-of-00114-5a023365406cb9c4.parquet",
+      "linked_size_bytes": 236268485,
+      "resolved_blob": "18d7ef70a6ef61f09c020950626d7e6e61d1300f3f85beddbd3b3c6801071a41"
+    },
+    {
+      "path": "/home/luohaoming/.cache/huggingface/hub/datasets--open-web-math--open-web-math/snapshots/fde8ef8de2300f5e778f56261843dab89f230815/data/train-00001-of-00114-e32fc2813a15f61c.parquet",
+      "linked_size_bytes": 238479393,
+      "resolved_blob": "d51cde7eeceb64d1814df384a0a05340422e40543db095200de38da41044dda1"
+    }
+  ],
+  "sampling_method": "select the smallest deterministic SHA-256 priorities over all eligible documents in the two locally cached shards",
+  "difficulty_definition": "natural-language-heavy OpenWebMath documents with detected mathematics; selection does not use Pythia loss",
+  "eligibility": {
+    "min_chars": 1024,
+    "min_words": 120,
+    "min_ascii_letter_fraction_nonspace": 0.55,
+    "require_found_math": true,
+    "min_math_score": 0.8
+  },
+  "sample_count": 512,
+  "seed": 20260725,
+  "raw_records_scanned": 110794,
+  "eligible_unique_records": 23311,
+  "rejection_counts": {
+    "invalid_text_or_metadata": 0,
+    "too_short": 22549,
+    "too_few_words": 68,
+    "low_letter_fraction": 751,
+    "no_detected_math": 5385,
+    "low_math_score": 58730,
+    "duplicate_text": 0
+  },
+  "max_stored_chars": 16384,
+  "text_digest_sha256": "e42bb8abb080e8e47fa47cbd61d22909843cd2abe05066ec4886d5f6354356d8",
+  "manifest_path": "/home/luohaoming/model_feature_experiments/single_token_frequency_loss_report/manifests/open_web_math_local_hard.jsonl",
+  "elapsed_seconds": 132.18856840208173
+}

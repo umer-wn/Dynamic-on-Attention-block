@@ -1,0 +1,45 @@
+{
+  "experiment": "09_pythia_early_training_frobenius_scan",
+  "data_root": "/home/luohaoming/model_feature_experiments/pythia_early_single_token_scan",
+  "policy": "reference_only_no_copy",
+  "required_subdirs": [
+    "raw",
+    "jacobians",
+    "processed",
+    "figures",
+    "logs",
+    "status",
+    "manifests"
+  ],
+  "coarse_checkpoints": [
+    "step1000",
+    "step5000",
+    "step9000",
+    "step13000",
+    "step17000",
+    "step21000",
+    "step25000",
+    "step29000",
+    "step33000",
+    "step37000",
+    "step41000",
+    "step45000",
+    "step49000",
+    "step53000",
+    "step57000",
+    "step61000",
+    "step65000",
+    "step69000",
+    "step73000",
+    "step77000",
+    "step81000",
+    "step85000",
+    "step89000",
+    "step93000",
+    "step97000"
+  ],
+  "sentinels": [
+    "step0",
+    "step100000"
+  ]
+}

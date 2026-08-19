@@ -1,0 +1,9 @@
+﻿checkpoint,training_step,initial_text,text_steps,tokens_per_text_step,total_generated_tokens,unique_text_windows,text_cycle_start,text_cycle_length,mean_token_change_fraction,final_text,runtime_seconds
+step1000,1000,# I About normalization of periodic wave function,256,8,2048,6,3,3,0.99951171875, of the function of the function of the,12.859312016516924
+step41000,41000,# I About normalization of periodic wave function,256,8,2048,9,4,5,0.94970703125,"
+
+A:
+
+You can",12.662266701459885
+step81000,81000,# I About normalization of periodic wave function,256,8,2048,3,2,1,0.00537109375, function of the wave function of the wave,12.459376811981201
+step121000,121000,# I About normalization of periodic wave function,256,8,2048,5,4,1,0.01416015625, the one that is the one that is,12.456165131181479

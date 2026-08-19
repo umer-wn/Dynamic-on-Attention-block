@@ -1,0 +1,20 @@
+{
+  "source_id": "the_pile_train",
+  "dataset_name": "monology/pile-uncopyrighted",
+  "split": "train",
+  "source_url": "https://hf-mirror.com/datasets/monology/pile-uncopyrighted/resolve/main/train/00.jsonl.zst",
+  "source_shard": "train/00.jsonl.zst",
+  "source_shard_linked_size_bytes": 11152428427,
+  "sampling_method": "deterministic reservoir sample from the first scan_limit eligible records of train shard 00, streamed through an HTTP byte range",
+  "sampling_scope_caveat": "This is a train-split proxy, not a uniform sample over all 30 train shards, and the uncopyrighted mirror is not guaranteed identical to the exact Pythia training mixture.",
+  "sample_count": 512,
+  "scan_limit": 20000,
+  "raw_records_scanned": 20192,
+  "eligible_records_scanned": 20000,
+  "min_chars": 128,
+  "range_bytes_cap": 536870912,
+  "seed": 1234,
+  "text_digest_sha256": "f646452ac74f0bfd2fad8f89c6f45f1f247264964f5cdb2a49bcde989bbbdc36",
+  "manifest_path": "/home/luohaoming/model_feature_experiments/single_token_frequency_loss_report/manifests/the_pile_train.jsonl",
+  "elapsed_seconds": 69.88571172580123
+}

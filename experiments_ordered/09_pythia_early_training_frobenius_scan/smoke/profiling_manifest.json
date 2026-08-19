@@ -1,0 +1,6 @@
+{
+  "status": "indexed",
+  "root": "/home/luohaoming/model_feature_experiments/pythia_early_single_token_scan/profiling",
+  "policy": "reference_only_no_copy",
+  "notes": "P0 profiling/prototype outputs; kept separate from full coarse scan."
+}

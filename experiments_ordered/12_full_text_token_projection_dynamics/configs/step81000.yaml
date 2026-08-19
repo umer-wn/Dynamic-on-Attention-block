@@ -1,0 +1,27 @@
+experiment_name: pythia_full_text_token_projection
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+offline: true
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+output_dir: /home/luohaoming/model_feature_experiments/full_text_token_projection_dynamics/step81000
+models:
+  - name: EleutherAI/pythia-70m
+    revision: step81000
+    tokenizer: EleutherAI/pythia-70m
+    tokenizer_revision: step100000
+source:
+  manifest_path: /home/luohaoming/model_feature_experiments/single_token_frequency_loss_report/manifests/open_web_math_local_hard.jsonl
+  sample_index: 0
+  text_field: text
+  token_offset: 0
+dynamics:
+  window_length: 8
+  tokens_per_text_step: 8
+  text_steps: 256
+  generation: greedy_argmax
+projection:
+  count: 4
+  seed: 1234
+  plot_tail_steps: 128

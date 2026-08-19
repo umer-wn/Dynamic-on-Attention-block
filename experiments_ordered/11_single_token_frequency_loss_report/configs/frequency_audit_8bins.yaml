@@ -1,0 +1,19 @@
+experiment_name: pythia_single_token_frequency_audit_8bins
+seed: 1234
+offline: true
+cache_dir: /home/luohaoming/model_feature_cache/hf_cache
+output_dir: /home/luohaoming/model_feature_experiments/single_token_frequency_8bins/frequency_audit
+models:
+  - name: EleutherAI/pythia-70m
+    revision: step0
+    tokenizer: EleutherAI/pythia-70m
+dataset:
+  name: wikitext
+  config: wikitext-2-raw-v1
+  split: train
+  text_column: text
+sampling:
+  context_length: 32
+  min_contexts: 2
+  frequency_bins: 8
+  tokens_per_bin: 4

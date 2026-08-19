@@ -1,0 +1,22 @@
+{
+  "experiment": "09_pythia_early_training_frobenius_scan",
+  "figure_root": "/home/luohaoming/model_feature_experiments/pythia_early_single_token_scan/figures",
+  "figures": [
+    "figures/adjacent_loss_bootstrap.png",
+    "figures/aligned_loss_and_frobenius.png",
+    "figures/checkpoint_normalized_frobenius.png",
+    "figures/checkpoint_normalized_frobenius_zoom.png",
+    "figures/checkpoint_test_loss.png",
+    "figures/frobenius_state_weight_controls.png",
+    "figures/loss_vs_normalized_frobenius.png",
+    "figures/token_checkpoint_frobenius_heatmap.png",
+    "figures/trajectory_grid__token10692__part1.png",
+    "figures/trajectory_grid__token10692__part2.png",
+    "figures/trajectory_grid__token18564__part1.png",
+    "figures/trajectory_grid__token18564__part2.png",
+    "figures/trajectory_grid__token34456__part1.png",
+    "figures/trajectory_grid__token34456__part2.png",
+    "figures/trajectory_grid__token35408__part1.png",
+    "figures/trajectory_grid__token35408__part2.png"
+  ]
+}
