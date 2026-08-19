@@ -1,0 +1,5 @@
+experiment,model,checkpoint,sequence_length,sample_index,active_dim,normalized_frobenius_geomean,normalized_frobenius_mean,edge_distance_log,phase_label,diverged,collapsed,burn_in_steps,eval_steps,frobenius_eval_states,frobenius_probes,operator_update,target,token_mode
+pythia_dynamical_edge_residual_alpha01_probe,EleutherAI/pythia-70m,main,128,0,3584,0.9457500856032734,0.9457500874996185,0.05577692495536419,bounded_nonfixed_like,0,0,16,64,4,4,residual,final_hidden,nonpad_flattened
+pythia_dynamical_edge_residual_alpha01_probe,EleutherAI/pythia-70m,main,128,1,65536,0.9456514566947996,0.9456514567136765,0.05588121683242744,bounded_nonfixed_like,0,0,16,64,4,4,residual,final_hidden,nonpad_flattened
+pythia_dynamical_edge_residual_alpha01_probe,EleutherAI/pythia-70m,main,128,2,2560,0.9457468679155666,0.9457468688488007,0.05578032722117366,bounded_nonfixed_like,0,0,16,64,4,4,residual,final_hidden,nonpad_flattened
+pythia_dynamical_edge_residual_alpha01_probe,EleutherAI/pythia-70m,main,128,3,65536,0.9456550328997878,0.945655032992363,0.05587743510269941,bounded_nonfixed_like,0,0,16,64,4,4,residual,final_hidden,nonpad_flattened

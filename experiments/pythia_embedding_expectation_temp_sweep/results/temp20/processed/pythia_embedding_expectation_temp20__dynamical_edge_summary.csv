@@ -1,0 +1,2 @@
+experiment,model,checkpoint,sequence_length,operator_update,target,token_mode,samples,mean_normalized_frobenius,median_normalized_frobenius,mean_edge_distance_log,diverged_fraction,collapsed_fraction
+pythia_embedding_expectation_temp20,EleutherAI/pythia-70m,main,64,direct,embedding_expectation,nonpad_flattened,2,0.13596264281802434,0.13596264281802434,2.050096155427294,0.0,0.0

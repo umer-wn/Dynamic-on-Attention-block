@@ -1,0 +1,3 @@
+experiment,model,checkpoint,sequence_length,sample_index,active_dim,normalized_frobenius_geomean,normalized_frobenius_mean,edge_distance_log,phase_label,diverged,collapsed,burn_in_steps,eval_steps,frobenius_eval_states,frobenius_probes,operator_update,target,token_mode
+pythia_embedding_expectation_smoke,EleutherAI/pythia-70m,main,64,0,3584,0.3084155860208398,0.32237327098846436,1.1763071002404097,bounded_nonfixed_like,0,0,8,32,2,2,direct,embedding_expectation,nonpad_flattened
+pythia_embedding_expectation_smoke,EleutherAI/pythia-70m,main,64,1,32768,0.17963624868142353,0.18183442950248718,1.716821313404246,bounded_nonfixed_like,0,0,8,32,2,2,direct,embedding_expectation,nonpad_flattened

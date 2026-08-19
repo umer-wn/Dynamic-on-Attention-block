@@ -1,0 +1,5 @@
+experiment,model,checkpoint,sequence_length,sample_index,active_dim,normalized_frobenius_geomean,normalized_frobenius_mean,edge_distance_log,phase_label,diverged,collapsed,burn_in_steps,eval_steps,frobenius_eval_states,frobenius_probes,operator_update,target,token_mode
+qwen_dynamical_edge_normal,Qwen/Qwen2.5-0.5B,main,128,0,6272,0.4602392561166751,0.46024082601070404,0.776008802722784,bounded_nonfixed_like,0,0,16,64,4,4,direct,final_hidden,nonpad_flattened
+qwen_dynamical_edge_normal,Qwen/Qwen2.5-0.5B,main,128,1,114688,0.4881407488147954,0.48815207183361053,0.7171514950115069,bounded_nonfixed_like,0,0,16,64,4,4,direct,final_hidden,nonpad_flattened
+qwen_dynamical_edge_normal,Qwen/Qwen2.5-0.5B,main,128,2,4480,0.4627581620431429,0.4627586007118225,0.7705506895573532,bounded_nonfixed_like,0,0,16,64,4,4,direct,final_hidden,nonpad_flattened
+qwen_dynamical_edge_normal,Qwen/Qwen2.5-0.5B,main,128,3,114688,0.4785228009053906,0.4785228297114372,0.7370514184294265,bounded_nonfixed_like,0,0,16,64,4,4,direct,final_hidden,nonpad_flattened

@@ -1,0 +1,2 @@
+experiment,model,checkpoint,sequence_length,operator_update,target,token_mode,samples,mean_normalized_frobenius,median_normalized_frobenius,mean_edge_distance_log,diverged_fraction,collapsed_fraction
+qwen_dynamical_edge_normal_long,Qwen/Qwen2.5-0.5B,main,128,direct,final_hidden,nonpad_flattened,4,0.46975635804294946,0.46718260059942046,0.755799938799354,0.0,0.0

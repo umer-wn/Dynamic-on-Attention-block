@@ -1,0 +1,44 @@
+experiment_name: pythia_embedding_expectation_smoke
+seed: 1234
+device: cuda
+dtype: float32
+attn_implementation: eager
+output_dir: /data1/luohaoming/model_feature/experiments/pythia_embedding_expectation_smoke/results
+cache_dir: /public/luohaoming/model_feature/hf_cache
+offline: true
+skip_existing: true
+
+models:
+  - name: EleutherAI/pythia-70m
+    revision: main
+    tokenizer: EleutherAI/pythia-70m
+
+dataset:
+  name: wikitext
+  config: wikitext-2-raw-v1
+  split: validation
+  text_column: text
+  num_samples: 2
+  sequence_lengths: [64]
+
+dynamics:
+  target: embedding_expectation
+  logit_temperature: 1.0
+  operator_update: direct
+  token_mode: nonpad_flattened
+  burn_in_steps: 8
+  eval_steps: 32
+  perturbation_epsilon: 1.0e-5
+  divergence_threshold: 1.0e6
+  collapse_threshold: 1.0e-8
+  convergence_tol: 1.0e-6
+  sensitivity_growth: 10.0
+  frobenius_eval_states: 2
+  frobenius_probes: 2
+  probe_distribution: rademacher
+  save_trajectory_summary: true
+  trajectory_projection: fixed_random
+  projection_seed: 20260711
+  lag_distance_windows: [1, 2, 4, 8, 16]
+  product_jacobian_windows: []
+  product_jacobian_probes: 0
