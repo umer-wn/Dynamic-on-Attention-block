@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.vscode/
+/data1/luohaoming/model_feature/experiments_ordered/**/logs
+/data1/luohaoming/model_feature/experiments_ordered/**/processed
+/data1/luohaoming/model_feature/experiments_ordered/**/raw

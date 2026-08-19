@@ -1,0 +1,12 @@
+torch
+transformers
+datasets
+accelerate
+safetensors
+numpy
+pandas
+scipy
+tqdm
+matplotlib
+seaborn
+pyyaml
