@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "checkpoints": [
+    "step0",
+    "step1000",
+    "step16000",
+    "step143000"
+  ],
+  "rows": 128,
+  "tail_size": 64,
+  "center_definition": "arithmetic mean of target hidden states steps 705..768",
+  "frequency_source": "/home/luohaoming/model_feature_cache/hf_cache/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-train.arrow",
+  "frequency_token_count": 2419745,
+  "frequency_vocab_observed": 33160,
+  "nearest_neighbor_metric": "cosine over checkpoint input-embedding vocabulary; special tokens excluded",
+  "prediction_metric": "softmax(checkpoint output_head @ convergence_center)",
+  "device": "cpu"
+}

@@ -1,0 +1,161 @@
+{
+  "token_selection_index": 0,
+  "relative_scale": 1e-06,
+  "perturbation_seed": 1904,
+  "projection_seed": 1616,
+  "steps": 1024,
+  "checkpoints": [
+    {
+      "checkpoint": "step0",
+      "initial_distance": 1.0005669537349604e-06,
+      "endpoint_distance": 11.087841987609863,
+      "endpoint_relative_distance": 0.490018755197525,
+      "max_distance": 19.45546531677246,
+      "max_distance_step": 984
+    },
+    {
+      "checkpoint": "step2000",
+      "initial_distance": 1.0011707445301e-06,
+      "endpoint_distance": 2.321871397725772e-05,
+      "endpoint_relative_distance": 6.974823349992221e-07,
+      "max_distance": 3.979978646384552e-05,
+      "max_distance_step": 27
+    },
+    {
+      "checkpoint": "step3000",
+      "initial_distance": 1.0167129858018598e-06,
+      "endpoint_distance": 1.3778782886220142e-05,
+      "endpoint_relative_distance": 3.884927934905136e-07,
+      "max_distance": 2.661783219082281e-05,
+      "max_distance_step": 14
+    },
+    {
+      "checkpoint": "step4000",
+      "initial_distance": 1.123138304137683e-06,
+      "endpoint_distance": 2.3241425878950395e-05,
+      "endpoint_relative_distance": 6.207183673723193e-07,
+      "max_distance": 6.786899757571518e-05,
+      "max_distance_step": 284
+    },
+    {
+      "checkpoint": "step5000",
+      "initial_distance": 1.199607709168049e-06,
+      "endpoint_distance": 0.015237432904541492,
+      "endpoint_relative_distance": 0.0004055050085298717,
+      "max_distance": 0.03257063403725624,
+      "max_distance_step": 763
+    },
+    {
+      "checkpoint": "step7000",
+      "initial_distance": 1.3100504929752788e-06,
+      "endpoint_distance": 34.15285110473633,
+      "endpoint_relative_distance": 0.8410642743110657,
+      "max_distance": 43.3358154296875,
+      "max_distance_step": 953
+    },
+    {
+      "checkpoint": "step8000",
+      "initial_distance": 1.3589832406069036e-06,
+      "endpoint_distance": 0.4857461750507355,
+      "endpoint_relative_distance": 0.012113981880247593,
+      "max_distance": 0.549704909324646,
+      "max_distance_step": 1017
+    },
+    {
+      "checkpoint": "step9000",
+      "initial_distance": 1.3893990171709447e-06,
+      "endpoint_distance": 5.146247713128105e-05,
+      "endpoint_relative_distance": 1.32552929699159e-06,
+      "max_distance": 5.791640069219284e-05,
+      "max_distance_step": 1014
+    },
+    {
+      "checkpoint": "step10000",
+      "initial_distance": 1.4265147001424339e-06,
+      "endpoint_distance": 7.188803283497691e-05,
+      "endpoint_relative_distance": 1.7812941450756625e-06,
+      "max_distance": 0.00010841188486665487,
+      "max_distance_step": 338
+    },
+    {
+      "checkpoint": "step13000",
+      "initial_distance": 1.4694783203594852e-06,
+      "endpoint_distance": 1.689191958575975e-05,
+      "endpoint_relative_distance": 4.097996395557857e-07,
+      "max_distance": 3.94908020098228e-05,
+      "max_distance_step": 18
+    },
+    {
+      "checkpoint": "step21000",
+      "initial_distance": 1.4902085467838333e-06,
+      "endpoint_distance": 36.522335052490234,
+      "endpoint_relative_distance": 0.7996968030929565,
+      "max_distance": 61.406883239746094,
+      "max_distance_step": 935
+    },
+    {
+      "checkpoint": "step25000",
+      "initial_distance": 1.4948490161259542e-06,
+      "endpoint_distance": 2.639486789703369,
+      "endpoint_relative_distance": 0.0519978329539299,
+      "max_distance": 45.459354400634766,
+      "max_distance_step": 684
+    },
+    {
+      "checkpoint": "step29000",
+      "initial_distance": 1.474132318435295e-06,
+      "endpoint_distance": 5.210201197769493e-05,
+      "endpoint_relative_distance": 1.0156835514862905e-06,
+      "max_distance": 0.000127312247059308,
+      "max_distance_step": 735
+    },
+    {
+      "checkpoint": "step33000",
+      "initial_distance": 1.4688362171000335e-06,
+      "endpoint_distance": 0.309759259223938,
+      "endpoint_relative_distance": 0.005796307232230902,
+      "max_distance": 0.5599525570869446,
+      "max_distance_step": 885
+    },
+    {
+      "checkpoint": "step37000",
+      "initial_distance": 1.4498330074275145e-06,
+      "endpoint_distance": 0.031311918050050735,
+      "endpoint_relative_distance": 0.0005617336719296873,
+      "max_distance": 0.050749123096466064,
+      "max_distance_step": 950
+    },
+    {
+      "checkpoint": "step41000",
+      "initial_distance": 1.424736979060981e-06,
+      "endpoint_distance": 4.451957283890806e-05,
+      "endpoint_relative_distance": 8.320629945046676e-07,
+      "max_distance": 0.0002598429855424911,
+      "max_distance_step": 348
+    },
+    {
+      "checkpoint": "step53000",
+      "initial_distance": 1.3428854117591982e-06,
+      "endpoint_distance": 7.659343827981502e-05,
+      "endpoint_relative_distance": 1.3537844552047318e-06,
+      "max_distance": 0.001084388350136578,
+      "max_distance_step": 525
+    },
+    {
+      "checkpoint": "step57000",
+      "initial_distance": 1.3151162647773162e-06,
+      "endpoint_distance": 0.00034175446489825845,
+      "endpoint_relative_distance": 4.956741122441599e-06,
+      "max_distance": 0.0012249232968315482,
+      "max_distance_step": 405
+    },
+    {
+      "checkpoint": "step61000",
+      "initial_distance": 1.278086415368307e-06,
+      "endpoint_distance": 1.9840923414449207e-05,
+      "endpoint_relative_distance": 2.8381538186295074e-07,
+      "max_distance": 0.00010543619282543659,
+      "max_distance_step": 2
+    }
+  ]
+}

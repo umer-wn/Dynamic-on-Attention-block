@@ -1,0 +1,44 @@
+{
+  "repo": "EleutherAI/pythia-70m",
+  "revision": "step7000",
+  "status": "complete",
+  "mode": "config_weight_only_prefetch",
+  "required_files": [
+    "config.json"
+  ],
+  "weight_candidates": [
+    "model.safetensors",
+    "pytorch_model.bin"
+  ],
+  "files": [
+    {
+      "filename": "config.json",
+      "status": "complete",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "complete",
+          "started_unix": 1785220549.874182,
+          "seconds": 16.908500287681818
+        }
+      ],
+      "path": "/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/17fc672c7ce5fc3d014ef3777d680aab80a0893b/config.json"
+    },
+    {
+      "filename": "model.safetensors",
+      "status": "complete",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "complete",
+          "started_unix": 1785220566.782872,
+          "seconds": 742.0515567921102
+        }
+      ],
+      "path": "/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/17fc672c7ce5fc3d014ef3777d680aab80a0893b/model.safetensors"
+    }
+  ],
+  "started_unix": 1785220549.8739653,
+  "weight_file": "model.safetensors",
+  "seconds": 758.9605904221535
+}

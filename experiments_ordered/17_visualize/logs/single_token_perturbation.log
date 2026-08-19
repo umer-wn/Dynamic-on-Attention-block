@@ -1,0 +1,36 @@
+{"checkpoint": "step0", "status": "complete", "seconds": 5.300374858081341, "initial_distance": 1.0005669537349604e-06, "endpoint_distance": 11.087841987609863, "endpoint_relative_distance": 0.490018755197525}
+{"checkpoint": "step2000", "status": "complete", "seconds": 2.830797579139471, "initial_distance": 1.0011707445301e-06, "endpoint_distance": 2.321871397725772e-05, "endpoint_relative_distance": 6.974823349992221e-07}
+{"checkpoint": "step3000", "status": "complete", "seconds": 2.8164698109030724, "initial_distance": 1.0167129858018598e-06, "endpoint_distance": 1.3778782886220142e-05, "endpoint_relative_distance": 3.884927934905136e-07}
+{"checkpoint": "step4000", "status": "complete", "seconds": 2.9044717103242874, "initial_distance": 1.123138304137683e-06, "endpoint_distance": 2.3241425878950395e-05, "endpoint_relative_distance": 6.207183673723193e-07}
+{"checkpoint": "step5000", "status": "complete", "seconds": 2.826770231127739, "initial_distance": 1.199607709168049e-06, "endpoint_distance": 0.015237432904541492, "endpoint_relative_distance": 0.0004055050085298717}
+{"checkpoint": "step7000", "status": "complete", "seconds": 2.8299389258027077, "initial_distance": 1.3100504929752788e-06, "endpoint_distance": 34.15285110473633, "endpoint_relative_distance": 0.8410642743110657}
+{"checkpoint": "step8000", "status": "complete", "seconds": 2.8124583959579468, "initial_distance": 1.3589832406069036e-06, "endpoint_distance": 0.4857461750507355, "endpoint_relative_distance": 0.012113981880247593}
+{"checkpoint": "step9000", "status": "complete", "seconds": 2.8655130565166473, "initial_distance": 1.3893990171709447e-06, "endpoint_distance": 5.146247713128105e-05, "endpoint_relative_distance": 1.32552929699159e-06}
+{"checkpoint": "step10000", "status": "complete", "seconds": 2.8573036417365074, "initial_distance": 1.4265147001424339e-06, "endpoint_distance": 7.188803283497691e-05, "endpoint_relative_distance": 1.7812941450756625e-06}
+{"checkpoint": "step13000", "status": "complete", "seconds": 2.859834562987089, "initial_distance": 1.4694783203594852e-06, "endpoint_distance": 1.689191958575975e-05, "endpoint_relative_distance": 4.097996395557857e-07}
+{"checkpoint": "step21000", "status": "complete", "seconds": 2.86766305193305, "initial_distance": 1.4902085467838333e-06, "endpoint_distance": 36.522335052490234, "endpoint_relative_distance": 0.7996968030929565}
+{"checkpoint": "step25000", "status": "complete", "seconds": 2.8834044374525547, "initial_distance": 1.4948490161259542e-06, "endpoint_distance": 2.639486789703369, "endpoint_relative_distance": 0.0519978329539299}
+{"checkpoint": "step29000", "status": "complete", "seconds": 2.8575724251568317, "initial_distance": 1.474132318435295e-06, "endpoint_distance": 5.210201197769493e-05, "endpoint_relative_distance": 1.0156835514862905e-06}
+{"checkpoint": "step33000", "status": "complete", "seconds": 2.8698653988540173, "initial_distance": 1.4688362171000335e-06, "endpoint_distance": 0.309759259223938, "endpoint_relative_distance": 0.005796307232230902}
+{"checkpoint": "step37000", "status": "complete", "seconds": 2.8215409852564335, "initial_distance": 1.4498330074275145e-06, "endpoint_distance": 0.031311918050050735, "endpoint_relative_distance": 0.0005617336719296873}
+{"checkpoint": "step41000", "status": "complete", "seconds": 2.821802217513323, "initial_distance": 1.424736979060981e-06, "endpoint_distance": 4.451957283890806e-05, "endpoint_relative_distance": 8.320629945046676e-07}
+{"checkpoint": "step53000", "status": "complete", "seconds": 2.8254889510571957, "initial_distance": 1.3428854117591982e-06, "endpoint_distance": 7.659343827981502e-05, "endpoint_relative_distance": 1.3537844552047318e-06}
+{"checkpoint": "step57000", "status": "complete", "seconds": 2.8488625958561897, "initial_distance": 1.3151162647773162e-06, "endpoint_distance": 0.00034175446489825845, "endpoint_relative_distance": 4.956741122441599e-06}
+{"checkpoint": "step61000", "status": "complete", "seconds": 2.833889216184616, "initial_distance": 1.278086415368307e-06, "endpoint_distance": 1.9840923414449207e-05, "endpoint_relative_distance": 2.8381538186295074e-07}
+{
+  "status": "complete",
+  "checkpoints": 19,
+  "token": {
+    "selection_index": 0,
+    "token_id": 21825,
+    "token": " clones",
+    "wikitext_train_count": 2,
+    "frequency_bin": 0
+  },
+  "csv": "/data1/luohaoming/model_feature/experiments_ordered/17_visualize/processed/single_token_perturbation_projection_trajectories.csv",
+  "summary": "/data1/luohaoming/model_feature/experiments_ordered/17_visualize/processed/single_token_perturbation_summary.json",
+  "endpoint_distance_range": [
+    1.3778782886220142e-05,
+    36.522335052490234
+  ]
+}

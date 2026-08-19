@@ -1,0 +1,21 @@
+{
+  "repo": "EleutherAI/pythia-70m",
+  "revision": "step4000",
+  "status": "complete",
+  "started_unix": 1785404222.0709133,
+  "max_workers": 1,
+  "revision_workers": 1,
+  "attempts_requested": 1,
+  "allow_patterns": [
+    "config.json",
+    "model.safetensors",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json"
+  ],
+  "attempts": [],
+  "snapshot_path": "/home/luohaoming/model_feature_cache/hf_cache/models--EleutherAI--pythia-70m/snapshots/904ea85340922718b8b68c56f9ee1fef30bb313a",
+  "snapshot_hash": "904ea85340922718b8b68c56f9ee1fef30bb313a",
+  "cache_hit": true,
+  "seconds": 6.105750799179077e-05
+}
